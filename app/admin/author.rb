@@ -26,6 +26,21 @@ sidebar :help do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+ form do |f|
+    inputs 'Details' do
+      input :title
+      input :published_at, label: "Publish Post At"
+      li "Created at #{f.object.created_at}" unless f.object.new_record?
+      input :category
+    end
+    panel 'Markup' do
+      "The following can be used in the content below..."
+    end
+    inputs 'Content', :body
+    para "Press cancel to return to the list without saving."
+    actions
+  end
+
 index do
 	selectable_column
 	column "Title" do |post|
